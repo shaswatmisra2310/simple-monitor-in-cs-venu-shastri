@@ -6,7 +6,7 @@ class Checker
     static bool batteryIsOk(float temperature, float soc, float chargeRate, Del handler) {  
         tempInRange(temperature,handler);
         socInRange(soc,handler);
-        chargeRateInRange(chargeRate,handler)
+        chargeRateInRange(chargeRate,handler);
         return (tempInRange(temperature)&&(socInRange(soc))&&chargeRateInRange(chargeRate));
     }
     
