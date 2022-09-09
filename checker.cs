@@ -4,7 +4,7 @@ using System.Diagnostics;
 class Checker
 {
     static bool batteryIsOk(float temperature, float soc, float chargeRate) {            
-        return (tempInRange(temp)&&(socInRange(soc))&&chargeRateInRange(chargeRate));
+        return (tempInRange(temperature)&&(socInRange(soc))&&chargeRateInRange(chargeRate));
     }
     
     static void printToConsole(string message)
@@ -15,8 +15,8 @@ class Checker
     static bool socInRange(float soc)
     {
         bool result= (soc<20||soc>80)?false:true;
-        if(result==false)
-            printToConsole("State of Charge is out of range!");
+        //if(result==false)
+            //printToConsole("State of Charge is out of range!");
         return result;
         
     }    
@@ -24,16 +24,16 @@ class Checker
     static bool tempInRange(float temp)
     {
         bool result= (temp<0||temp>45)?false:true;
-        if(result==false)
-            printToConsole("Temperature is out of range !");
+        //if(result==false)
+            //printToConsole("Temperature is out of range !");
         return result;
     }
     static bool chargeRateInRange(float chargeRate)
     {
         
         bool result= (chargeRate>0.8)?false:true;
-        if(result==false)
-            printToConsole("Charge Rate is out of range!");
+        //if(result==false)
+            //printToConsole("Charge Rate is out of range!");
         return result;
     
     }
