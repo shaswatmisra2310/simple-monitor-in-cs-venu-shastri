@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 class Checker
 {
-    static bool batteryIsOk(float temperature, float soc, float chargeRate) {            \\parameter values, possible values  Value,State,Interaction testing
+    static bool batteryIsOk(float temperature, float soc, float chargeRate) {            \\parameter values, possible values  Value,State,Interaction/Behavioural testing
         if(temperature < 0 || temperature > 45) {
             Console.WriteLine("Temperature is out of range !");
             return false;
