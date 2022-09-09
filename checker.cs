@@ -14,7 +14,13 @@ class Checker
 
     static bool socInRange(float soc)
     {
-        bool result= (soc<20||soc>80)?false:true;
+        bool result= false;
+        if(soc<20||soc>80)
+            return result;
+        else
+            return true;
+                       
+            
         //if(result==false)
             //printToConsole("State of Charge is out of range!");
         return result;
