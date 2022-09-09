@@ -3,16 +3,19 @@ using System.Diagnostics;
 
 class Checker
 {
-    static bool batteryIsOk(float temperature, float soc, float chargeRate) {            
+    static bool batteryIsOk(float temperature, float soc, float chargeRate, Del handler) {  
+        tempInRange(temperature,handler);
+        socInRange(soc,handler);
+        chargeRateInRange(chargeRate,handler)
         return (tempInRange(temperature)&&(socInRange(soc))&&chargeRateInRange(chargeRate));
     }
     
-    static void printToConsole(string message)
+    static void delegate printToConsole(string message)
     {
         Console.WriteLine(message);
     }
 
-    static bool socInRange(float soc)
+    static bool delegate socInRange(float soc,Del handler)
     {
         bool result= false;
         if(soc<20||soc>80)
@@ -27,14 +30,14 @@ class Checker
         
     }    
     
-    static bool tempInRange(float temp)
+    static bool delegate tempInRange(float temp,Del handler)
     {
         bool result= (temp<0||temp>45)?false:true;
         //if(result==false)
             //printToConsole("Temperature is out of range !");
         return result;
     }
-    static bool chargeRateInRange(float chargeRate)
+    static bool delegate chargeRateInRange(float chargeRate,Del handler)
     {
         
         bool result= (chargeRate>0.8)?false:true;
@@ -57,8 +60,9 @@ class Checker
         }
     }
     static int Main() {
-        ExpectTrue(batteryIsOk(25, 70, 0.7f));
-        ExpectFalse(batteryIsOk(50, 85, 0.0f));
+        Del handler = printToConsole;
+        ExpectTrue(batteryIsOk(25, 70, 0.7f,handler));
+        ExpectFalse(batteryIsOk(50, 85, 0.0f,handler));
         Console.WriteLine("All ok");
         return 0;
     }
