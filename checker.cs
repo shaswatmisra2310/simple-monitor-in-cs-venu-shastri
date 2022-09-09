@@ -3,24 +3,40 @@ using System.Diagnostics;
 
 class Checker
 {
-    static bool batteryIsOk(float temperature, float soc, float chargeRate) {            \\parameter values, possible values  Value VVV,State,Interaction/Behavioural testing
-        if(temperature < 0 || temperature > 45) {                                         \\arrange , Act, Assert
-            Console.WriteLine("Temperature is out of range !");
-            return false;
-        } else if(soc < 20 || soc > 80) {
-            Console.WriteLine("State of Charge is out of range!");
-            return false;
-        } else if(chargeRate > 0.8) {
-            Console.WriteLine("Charge Rate is out of range!");
-            return false;
-        }
-        return true;
+    static bool batteryIsOk(float temperature, float soc, float chargeRate) {            
+        return (tempInRange(temp)&&(socInRange(soc))&&chargeRateInRange(chargeRate));
     }
+    
+    static void printToConsole(string message)
+    {
+        Console.WriteLine(message);
+    }
+
+    static bool socInRange(float soc)
+    {
+        bool result= (soc<20||soc>80)?false:true;
+        if(result==false)
+            printToConsole("State of Charge is out of range!");
+        return result;
+        
+    }    
     
     static bool tempInRange(float temp)
     {
-        return (temp<0&&temp>45)?false:true;
-    }    
+        bool result= (temp<0||temp>45)?false:true;
+        if(result==false)
+            printToConsole("Temperature is out of range !");
+        return result;
+    }
+    static bool chargeRateInRange(float chargeRate)
+    {
+        
+        bool result= (chargeRate>0.8)?false:true;
+        if(result==false)
+            printToConsole("Charge Rate is out of range!");
+        return result;
+    
+    }
 
     static void ExpectTrue(bool expression) {
         if(!expression) {
